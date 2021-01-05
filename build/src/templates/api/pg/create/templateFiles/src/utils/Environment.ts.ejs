@@ -1,0 +1,10 @@
+export class Environment {
+
+    static DB_HOST: string = process.env.SHARED_POSTGRES_HOST ? process.env.SHARED_POSTGRES_HOST : '0.0.0.0';
+    static DB_PORT: number = process.env.SHARED_POSTGRES_PORT ? Number.parseInt(process.env.SHARED_POSTGRES_PORT) : 5432;
+    static DB_USER: string = process.env.SHARED_POSTGRES_USER ? process.env.SHARED_POSTGRES_USER : 'shared-dev-user';
+    static DB_PASSWORD: string = process.env.SHARED_POSTGRES_PASSWORD ? process.env.SHARED_POSTGRES_PASSWORD : 'shared-dev-password';
+
+    static DB_NAME: string = process.env.<%= props.envDbName %> ? process.env.<%= props.envDbName %> : '<%= props.name %>';
+    static API_PORT: number = process.env.<%= props.envPortName %> ? Number.parseInt(process.env.<%= props.envPortName %>) : <%= props.port %>;
+}

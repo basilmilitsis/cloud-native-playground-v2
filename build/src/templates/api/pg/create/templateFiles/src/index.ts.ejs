@@ -1,0 +1,22 @@
+// Environment
+import { Environment } from './utils/Environment'
+
+// Express
+import { Application } from 'express';
+
+// API
+import { useApolloServer } from './utils/useApolloServer';
+
+// DB
+import { usePostgraphileServer } from './utils/usePostgraphileServer';
+
+// Start Server helper
+import { startServer } from './utils/startService';
+
+
+startServer(
+    Environment.API_PORT, 
+    (app: Application) => usePostgraphileServer(app, '/db', false), 
+    (app: Application) => useApolloServer(app, '/api'),
+    false
+);

@@ -1,0 +1,16 @@
+import "reflect-metadata";
+
+// Express
+import { Application } from 'express';
+
+// Apollo Server
+import { ApolloServer } from 'apollo-server-express';
+
+// Schema Builder
+import { buildSchema } from '../api/.generated/buildSchema/buildSchema';
+
+
+export const useApolloServer = (app: Application, path: string) => {
+    const server = new ApolloServer({ schema: buildSchema(), playground: true });
+    server.applyMiddleware({ app, path: path });
+}

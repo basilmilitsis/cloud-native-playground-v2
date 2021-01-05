@@ -1,0 +1,14 @@
+{
+  "name": "cloud-native-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": "sh ./start-local-stack.sh",
+    "stop": "sh ./stop-local-stack.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

@@ -1,0 +1,48 @@
+import { Resolver, Query, Arg } from "type-graphql";
+
+import { CreateAgentInput } from './CreateAgentInput';
+import { CreateAgentOutput } from './CreateAgentOutput';
+
+import { createAgentMutation } from '../../../db/.generated/mutations/createAgentMutation';
+
+@Resolver(CreateAgentOutput)
+export class CreateAgentResolver {
+        
+    @Query(returns => CreateAgentOutput, { nullable: true })
+    async createAgent(@Arg("input") input: CreateAgentInput): Promise<CreateAgentOutput | undefined> {
+        console.log('->>', input);
+
+        // Execute Query
+        const response = await createAgentMutation(
+            {
+                input: {
+                    clientMutationId: input.clientMutationId, 
+                    agent: { 
+                        id: input.id, 
+                        fullname: input.fullName, 
+                        officeId: input.officeId 
+                    }
+                }
+            });  
+    
+        // Response Validation
+        if( response.errors ) {
+            throw new Error(`Error with query: ${response.errors}`);
+        }
+    
+        if ( !response.data ) {
+            throw new Error('Error with response');
+        }
+    
+        if( !response.data.createAgent || !response.data.createAgent.agent  ) {
+            throw new Error('No valid response data');
+        }
+    
+        // Response
+        const agent = response.data.createAgent.agent;
+        return {
+            id: agent.id,
+            fullName: agent.fullname
+        };
+    }
+}

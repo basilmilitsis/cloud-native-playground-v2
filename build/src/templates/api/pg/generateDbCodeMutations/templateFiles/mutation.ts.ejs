@@ -1,0 +1,10 @@
+import { MyExecutionResult, dbGraphQLQuery } from '../../../utils/dbGraphqlQuery';
+
+import { <%= props.dbTypeName %>, <%= props.variablesName %> } from '../typings/DbTypes';
+import { <%= props.operationName %> } from '../../mutations/<%= props.operationName %>';
+
+
+export const <%= props.functionName %> = async (variables: <%= props.variablesName %>): Promise<MyExecutionResult<<%= props.dbTypeName %>>> => {
+    // Execute Query
+    return await dbGraphQLQuery<<%= props.dbTypeName %>>(<%= props.operationName %>, variables);  
+}

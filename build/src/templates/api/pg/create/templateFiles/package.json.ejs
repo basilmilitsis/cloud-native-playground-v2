@@ -1,0 +1,62 @@
+{
+    "name": "<%= props.name %>",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./.build/index.js",
+    "scripts": {
+        "compile": "tsc",
+        "compile:db-models": "npx tsc -p ./tsconfig-init-db.json",
+        "compile:sync": "npx tsc -p ./tsconfig-sync.json",
+        "compile:watch": "tsc -w -p .",
+    
+        "init:db": "npm run compile:db-models && build api pg init-db",
+
+        "sync:db-schema": "npm run compile:sync && node -r dotenv/config ./.build_sync/indexSync.js dotenv_config_path=./../../.env",
+    
+        "generate:db:code:typings": "graphql-codegen",
+        "generate:db:code:queries": "build api pg generate-db-code-queries",
+        "generate:db:code:mutations": "build api pg generate-db-code-mutations",
+        "generate:db:code": "npm run generate:db:code:typings && npm run generate:db:code:queries && npm run generate:db:code:mutations",
+    
+        "generate:api:code:api-builder": "build api pg generate-api-builder",
+    
+        "start:dev": "npm run compile && node -r dotenv/config ./.build/index.js dotenv_config_path=./../../.env",
+        "start:dev:debug": "nodemon --legacy-watch --watch ./.build --inspect=0.0.0.0:5858 --nolazy ./.build/index.js",
+        "start": "node ./.build/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@graphql-codegen/add": "^2.0.2",
+        "@graphql-codegen/cli": "^1.20.0",
+        "@graphql-codegen/typescript": "^1.19.0",
+        "@graphql-codegen/typescript-operations": "^1.17.13",
+        "apollo-server-express": "^2.19.1",
+        "axios": "^0.19.2",
+        "body-parser": "^1.19.0",
+        "class-validator": "^0.12.2",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "graphile-build": "^4.10.0",
+        "graphile-utils": "^4.10.0",
+        "graphql": "^15.4.0",
+        "graphql-import": "^1.0.2",
+        "graphql-typed-client": "^1.7.4",
+        "nodemon": "^1.11.0",
+        "portable-fetch": "^3.0.0",
+        "postgraphile": "^4.10.0",
+        "reflect-metadata": "^0.1.13",
+        "type-graphql": "^1.1.1",
+        "typeorm": "^0.2.29",
+        "url": "^0.11.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.9",
+        "@types/graphql": "^14.5.0",
+        "@types/isomorphic-fetch": "0.0.35",
+        "@types/node": "^13.13.38",
+        "typescript": "^4.1.3"
+    }
+}

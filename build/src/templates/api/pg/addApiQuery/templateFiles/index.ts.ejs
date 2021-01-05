@@ -1,0 +1,13 @@
+import { Resolver, Query, Arg } from "type-graphql";
+
+import { <%= props.operationInputName %> } from './<%= props.operationInputName %>';
+import { <%= props.operationOutputName %> } from './<%= props.operationOutputName %>';
+
+@Resolver(<%= props.operationOutputName %>)
+export class <%= props.operationResolverName %> {
+        
+    @Query(returns => <%= props.operationOutputName %>, { nullable: true })
+    async <%= props.operationName %>(@Arg("input") input: <%= props.operationInputName %>): Promise<<%= props.operationOutputName %> | undefined> {
+        return await new Promise( (resolve: (param: <%= props.operationOutputName %> | undefined) => void, reject) => { resolve(undefined) } );
+    }
+}

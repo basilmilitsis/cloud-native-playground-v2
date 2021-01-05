@@ -1,0 +1,17 @@
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Office } from './Office';
+
+
+
+@Entity({ schema: 'public' })
+export class Agent {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column({ type: 'text' })
+    fullname!: string;
+
+    @OneToOne(() => Office)
+    @Column({ type: 'integer' })
+    officeId!: number;
+}

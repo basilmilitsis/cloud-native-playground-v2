@@ -1,0 +1,26 @@
+// 
+import { buildSchemaSync } from 'type-graphql';
+import { GraphQLSchema } from 'graphql';
+
+// Resolvers
+<% for(var i=0; i<props.resolvers.length; i++) { %>
+import { <%= props.resolvers[i].name %> } from '../../<%= props.resolvers[i].operationType %>/<%= props.resolvers[i].folderName %>';
+<% } %>
+
+
+export const buildSchema = (): GraphQLSchema => {
+    try {
+        return buildSchemaSync({
+            resolvers: [
+                <% for(var i=0; i<props.resolvers.length; i++) { %>
+                <%= props.resolvers[i].name %>,
+                <% } %>
+            ],
+            emitSchemaFile: "./src/api/.generated/schema/api.graphql",
+        });
+    }
+    catch(e :any) {
+        console.log('Error Creating Schema: ', e);
+        throw e;
+    }
+};

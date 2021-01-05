@@ -1,0 +1,9 @@
+import { Field, InputType } from "type-graphql";
+
+import { <%= props.operationOutputName %> } from './<%= props.operationOutputName %>';
+
+@InputType()
+export class <%= props.operationInputName %> implements Partial<<%= props.operationOutputName %>> {
+    @Field({ nullable: true })
+    exampleField?: string;
+}

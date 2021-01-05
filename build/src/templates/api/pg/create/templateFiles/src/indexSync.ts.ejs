@@ -1,0 +1,30 @@
+// Environment
+import { Environment } from './utils/Environment'
+
+// Express
+import { Application } from 'express';
+
+// DB
+import { usePostgraphileServer } from './utils/usePostgraphileServer';
+
+// Start Server helper
+import { startServer } from './utils/startService';
+
+// Start Server
+const server = startServer(
+    Environment.API_PORT, 
+    (app: Application) => usePostgraphileServer(app, '/db', true), 
+    (app: Application) => {},
+    true
+);
+
+// Auto stop the server after a brief timeout (and hopefully the db.gql file has been fetched)
+setTimeout(
+    () => {
+        server.close(() => {
+            console.log('Server(s) stopped');
+        });
+        process.exit(0);
+    }, 
+    3000
+);

@@ -1,0 +1,67 @@
+import { Environment } from './Environment';
+
+import { graphql, GraphQLSchema, GraphQLError, DocumentNode } from 'graphql';
+import { withPostGraphileContext, createPostGraphileSchema } from 'postgraphile';
+import { Pool } from 'pg';
+
+//-----------------------------------------------------------------------
+//-- Schema Setup
+let schema: GraphQLSchema;
+const pgPool: Pool = new Pool({
+    host: Environment.DB_HOST,
+    port: Environment.DB_PORT,
+    user: Environment.DB_USER,
+    password: Environment.DB_PASSWORD,
+    database: Environment.DB_NAME,
+});
+
+(async () => {
+    schema = await createPostGraphileSchema(pgPool, 'public');
+    // console.log('=====+>', schema);
+})();
+
+
+//-----------------------------------------------------------------------
+/**
+ *
+ * @param graphqlQuery A GraphQL language formatted string representing the requested operation.
+ * @param variables A mapping of variable name to runtime value to use for all variables defined in the requestString.
+ * @param operationName The name of the operation to use if requestString contains multiple possible operations. Can be omitted if requestString contains only one operation.
+ */
+export async function dbGraphQLQuery<T>(
+    graphqlQuery: DocumentNode,
+    variables: any = undefined,
+    operationName?: string,
+): Promise<MyExecutionResult<T>> {
+    //console.log(pgPool);
+    return await withPostGraphileContext(
+        {
+            ...{}, // add any options here
+            pgPool: pgPool,
+        },
+        async <T>(context: any): Promise<MyExecutionResult<T>> => {
+            
+            if( !graphqlQuery.loc?.source?.body ) {
+                throw new Error('Ooops - query not created correctly');
+            }
+
+            return await graphql(
+                schema,
+                graphqlQuery.loc.source.body,
+                null,
+                {
+                    ...context,
+                    /* You can add more to context if you like, e.g. data from request headers */
+                },
+                variables,
+                operationName,
+            ) as MyExecutionResult<T>;
+        },
+    ) as MyExecutionResult<T>;
+}
+
+export interface MyExecutionResult<T> {
+    errors?: ReadonlyArray<GraphQLError>;
+    data?: T | null;
+    extensions?: any | null;
+}

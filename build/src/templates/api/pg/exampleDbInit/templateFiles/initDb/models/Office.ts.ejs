@@ -1,0 +1,12 @@
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
+
+
+
+@Entity({ schema: 'public' })
+export class Office {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column({ type: 'text' })
+    officename!: string;
+}

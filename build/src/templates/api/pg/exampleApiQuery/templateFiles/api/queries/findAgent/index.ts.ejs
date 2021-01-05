@@ -1,0 +1,35 @@
+import { Resolver, Query, Arg } from "type-graphql";
+
+import { FindAgentInput } from './FindAgentInput';
+import { FindAgentOutput } from './FindAgentOutput';
+
+import { agentByIdQuery } from '../../../db/.generated/queries/agentByIdQuery';
+
+@Resolver(FindAgentOutput)
+export class FindAgentResolver {
+        
+    @Query(returns => FindAgentOutput, { nullable: true })
+    async findAgent(@Arg("input") input: FindAgentInput): Promise<FindAgentOutput | undefined> {
+
+        // Execute Query
+        const response = await agentByIdQuery({ id: input.id});  
+
+        // Response Validation
+        if( response.errors ) {
+            throw new Error('Error with query');
+        }
+
+        if ( !response.data ) {
+            throw new Error('Error with response');
+        }
+
+        if( !response.data.agentById ) {
+            throw new Error('No valid response data');
+        }
+        
+        return {
+            id: response.data.agentById?.id,
+            fullName: response.data.agentById?.fullname,
+        };
+    }
+}

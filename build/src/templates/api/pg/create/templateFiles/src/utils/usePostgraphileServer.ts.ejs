@@ -1,0 +1,24 @@
+import { Environment } from './Environment'
+
+// Express
+import { Application } from 'express';
+
+// Postgraphile
+import { postgraphile } from 'postgraphile';
+
+export const usePostgraphileServer = (app: Application, path: string, emitSchema: boolean) => {
+    app.use(
+        postgraphile(
+            `postgres://${Environment.DB_USER}:${Environment.DB_PASSWORD}@${Environment.DB_HOST}:${Environment.DB_PORT}/${Environment.DB_NAME}`,
+            'public',
+            {
+                watchPg: true,
+                graphiql: true,
+                enhanceGraphiql: true,
+                graphqlRoute: path,
+                graphiqlRoute: `${path}/graphiql`,
+                exportGqlSchemaPath: emitSchema ? './src/db/.generated/schema/db.graphql' : undefined,
+            }
+        )
+    );
+}

@@ -1,0 +1,17 @@
+# Root directory
+_ignore/
+.history/
+.vs/
+.vscode/
+
+# kafka event storage
+kafka-event-log/
+
+# child directories
+node_modules
+node_modules/**/*
+dist/
+.build/
+.build_sync/
+etc/
+/**/.generated/**/*

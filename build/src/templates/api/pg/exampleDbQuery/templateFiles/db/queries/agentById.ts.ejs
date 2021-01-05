@@ -1,0 +1,12 @@
+import { gql } from 'graphile-utils';
+
+export const agentById = gql`
+    query agentById( $id: Int!) {
+        agentById(id: $id) {
+            id,
+            fullname
+        }
+    }
+`;
+
+

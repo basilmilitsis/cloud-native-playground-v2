@@ -1,0 +1,10 @@
+import { Field, ObjectType } from "type-graphql";
+
+@ObjectType()
+export class FindAgentOutput {
+    @Field({ nullable: true })
+    id: number;
+
+    @Field({ nullable: true })
+    fullName?: string;
+}

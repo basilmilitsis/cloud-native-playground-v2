@@ -1,0 +1,29 @@
+// Express
+import express, { Application } from 'express';
+import { Server } from "http";
+import * as bodyParser from 'body-parser';
+
+export const startServer = (port: number, dbStartupCallback: (app: Application) => void, apiStartupCallback: (app: Application) => void, closeOnStart: boolean): Server => {
+    
+    const app = express();
+
+    // API
+    dbStartupCallback(app);
+
+    // DB
+    apiStartupCallback(app);
+
+    // All other requests
+    app.use((req, res) => {
+        res.status(200);
+        res.send('Oops...!');
+        res.end();
+    });
+
+    // Listen
+    const server = app.listen({ port: port }, () => {
+        console.log(`🚀 Server(s) ready at http://localhost:${port}`);
+    });
+
+    return server;
+}

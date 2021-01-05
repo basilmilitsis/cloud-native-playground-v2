@@ -1,0 +1,9 @@
+import { Field, InputType } from "type-graphql";
+
+import { FindAgentOutput } from './FindAgentOutput';
+
+@InputType()
+export class FindAgentInput implements Partial<FindAgentOutput> {
+    @Field()
+    id: number;
+}

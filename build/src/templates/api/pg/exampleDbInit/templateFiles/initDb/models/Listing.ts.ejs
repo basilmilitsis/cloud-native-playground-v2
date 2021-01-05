@@ -1,0 +1,24 @@
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Agent } from './Agent';
+
+
+
+
+@Entity({ schema: 'public' })
+export class Listing {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column({ type: 'text' })
+    addr!: string;
+
+    @Column({ type: 'integer' })
+    price!: number;
+
+    @Column({ type: 'text' })
+    suburb!: string;
+
+    @OneToOne(() => Agent)
+    @Column({ type: 'integer' })
+    agentId!: number;
+}
