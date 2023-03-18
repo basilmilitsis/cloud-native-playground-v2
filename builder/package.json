@@ -5,22 +5,24 @@
   "private": true,
   "types": ".build/types/types.d.ts",
   "bin": {
-    "build": "bin/build"
+    "builder": "bin/builder"
   },
   "scripts": {
-    "format": "prettier --write **/*.{js,ts,tsx,json}",
-    "lint": "tslint -p .",
-    "clean-build": "rm -rf ./.build",
-    "compile": "tsc -p .",
-    "copy-templates":
+    "build:format": "prettier --write **/*.{js,ts,tsx,json}",
+    "build:lint": "tslint -p .",
+    "build:clean-build": "rm -rf ./.build",
+    "build:compile": "tsc -p .",
+    "build:copy-templates":
       "if [ -e ./src/templates ]; then cp -a ./src/templates ./.build/; fi",
     "build":
-      "yarn format && yarn clean-build && yarn compile && yarn copy-templates",
+      "yarn build:format && yarn build:clean-build && yarn build:compile && yarn build:copy-templates",
+    "dev:global:link": "npm link",
+    "dev:global:unlink": "npm unlink builder",
     "prepublishOnly": "yarn build",
-    "test": "jest",
-    "watch": "jest --watch",
-    "snapupdate": "jest --updateSnapshot",
-    "coverage": "jest --coverage"
+    "test:unit": "jest",
+    "test:watch": "jest --watch",
+    "test:snapupdate": "jest --updateSnapshot",
+    "test:coverage": "jest --coverage"
   },
   "files": [
     "tsconfig.json",
@@ -44,16 +46,16 @@
     "typeorm-naming-strategies": "2.0.0"
   },
   "devDependencies": {
-    "@types/node": "12.7.11",
     "@types/jest": "24.0.18",
-    "ts-node": "8.4.1",
+    "@types/node": "12.7.11",
+    "jest": "24.1.0",
+    "prettier": "1.12.1",
     "ts-jest": "24.1.0",
+    "ts-node": "8.4.1",
     "tslint": "5.12.0",
     "tslint-config-prettier": "1.17.0",
     "tslint-config-standard": "8.0.1",
-    "typescript": "3.6.3",
-    "prettier": "1.12.1",
-    "jest": "24.1.0"
+    "typescript": "3.6.3"
   },
   "jest": {
     "preset": "ts-jest",

@@ -2,7 +2,7 @@ apiName=${1}
 portNum=${2}
 
 # Create the API
-build api pg create ${apiName} ${portNum}
+builder api pg create ${apiName} ${portNum}
 
 # Change to api directory
 cd ./apis/${apiName}
@@ -11,27 +11,27 @@ cd ./apis/${apiName}
 npm i
 
 # Init DB
-build api pg example-db-init
+builder api pg example-db-init
 npm run init:db
 
 # Sync DB Schema
 npm run sync:db-schema
 
 # Generate example DB Query and Mutation
-build api pg example-db-query
-build api pg example-db-mutation
+builder api pg example-db-query
+builder api pg example-db-mutation
 
 # Generate DB Code
 npm run generate:db:code
 
 # Query
-build api pg add-api-query findAgent
-build api pg example-api-query
+builder api pg add-api-query findAgent
+builder api pg example-api-query
 
 
 # Command
-build api pg add-api-command createAgent
-build api pg example-api-command
+builder api pg add-api-command createAgent
+builder api pg example-api-command
 
 
 # Start Service

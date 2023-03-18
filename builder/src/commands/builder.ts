@@ -1,11 +1,11 @@
 import { GluegunCommand } from 'gluegun'
 
 const command: GluegunCommand = {
-  name: 'build',
+  name: 'builder',
   run: async toolbox => {
     const { print } = toolbox
 
-    print.info('Welcome to your CLI')
+    print.info('Welcome to your Builder CLI')
   }
 }
 

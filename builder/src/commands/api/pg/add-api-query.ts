@@ -51,6 +51,6 @@ module.exports = {
     info(`query added`)
 
     // Update the Query Builder
-    await system.run(`build api pg generate-api-builder`)
+    await system.run(`builder api pg generate-api-builder`)
   }
 }

@@ -20,7 +20,7 @@ module.exports = {
     await writeTemplateRecursively(templateModel, generate, toolbox.print)
 
     // Update the Query Builder
-    await system.run(`build api pg generate-api-builder`)
+    await system.run(`builder api pg generate-api-builder`)
 
     info(`Example Added - Api Query`)
   }

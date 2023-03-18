@@ -9,9 +9,9 @@ const { build } = require('gluegun')
 async function run(argv) {
   // create a CLI runtime
   const cli = build()
-    .brand('build')
+    .brand('builder')
     .src(__dirname)
-    .plugins('./node_modules', { matching: 'build-*', hidden: true })
+    .plugins('./node_modules', { matching: 'builder-*', hidden: true })
     .help() // provides default for help, h, --help, -h
     .version() // provides default for version, v, --version, -v
     .create()

@@ -9,7 +9,7 @@
     - `src/initDb/data`
       - contains `.csv` files, with table initialisation data
       - filenames must match the table names
-    - build api pg example-db-init
+    - builder api pg example-db-init
   - **Run:** `npm run init:db`
     - adds tables to postgres
     - adds data to postgres
@@ -35,7 +35,7 @@
         `;
         ```
       - *note: intellisense is against the types generated in `./src/db/.generated/schema/db.gql`, and the vs-code plugin `graphql` is needed*
-    - **OR**, run `build api pg example-db-query` to auto-generate a similar example
+    - **OR**, run `builder api pg example-db-query` to auto-generate a similar example
   - Add db mutations needed to `./src/db/mutations/` as .ts files
       - ```
         import { gql } from 'graphile-utils';
@@ -51,7 +51,7 @@
         `;
         ```
       - *note: intellisense is against the types generated in `./src/db/.generated/schema/db.gql`, and the vs-code plugin `graphql` is needed*
-    - **OR**, run `build api pg example-db-mutation` to auto-generate a similar example
+    - **OR**, run `builder api pg example-db-mutation` to auto-generate a similar example
 
 - **(re)generate db code**
   - **Run:** `npm run generate:db:code`
@@ -69,31 +69,31 @@
 
 - **business logic**
   - **queries**
-    - **Run:** `build api pg add-api-query <name>`
+    - **Run:** `builder api pg add-api-query <name>`
       - creates stub API query to `./src/api/queries/<name>`
       - it calls `generate:api:code:api-builder`
         - this rebuilds framework code to allow the new query to be imported when the service is run
     - **Then add your business logic**
       - *note: use generated queries from `./src/db/.generated/queries/`*
       - e.g.
-        - run `build api pg example-api-query` for example code
+        - run `builder api pg example-api-query` for example code
 
   - **commands**
-    - **Run:** `build api pg add-api-command <name>`
+    - **Run:** `builder api pg add-api-command <name>`
       - creates stub API command to `./src/api/commands/<name>`
         - it calls `generate:api:code:api-builder`
         - this rebuilds framework code to allow the new command to be imported when the service is run
     - **Then add your business logic**
       - *note: use generated commands from `./src/db/.generated/commands/`*
       - e.g.
-        - run `build api pg example-api-command` for example code
+        - run `builder api pg example-api-command` for example code
   
 - **start service**
   - **Run:** `npm run start:dev`
     - postgraphile
       - starts postgraphile server
     - graphql api
-      - build api schema using Resolvers (using `type-graphql`)
+      - builder api schema using Resolvers (using `type-graphql`)
       - write schema to `./src/api/.generated/api.gql`
       - starts graphql api server
 

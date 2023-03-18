@@ -9,16 +9,16 @@
         "compile:sync": "npx tsc -p ./tsconfig-sync.json",
         "compile:watch": "tsc -w -p .",
     
-        "init:db": "npm run compile:db-models && build api pg init-db",
+        "init:db": "npm run compile:db-models && builder api pg init-db",
 
         "sync:db-schema": "npm run compile:sync && node -r dotenv/config ./.build_sync/indexSync.js dotenv_config_path=./../../.env",
     
         "generate:db:code:typings": "graphql-codegen",
-        "generate:db:code:queries": "build api pg generate-db-code-queries",
-        "generate:db:code:mutations": "build api pg generate-db-code-mutations",
+        "generate:db:code:queries": "builder api pg generate-db-code-queries",
+        "generate:db:code:mutations": "builder api pg generate-db-code-mutations",
         "generate:db:code": "npm run generate:db:code:typings && npm run generate:db:code:queries && npm run generate:db:code:mutations",
     
-        "generate:api:code:api-builder": "build api pg generate-api-builder",
+        "generate:api:code:api-builder": "builder api pg generate-api-builder",
     
         "start:dev": "npm run compile && node -r dotenv/config ./.build/index.js dotenv_config_path=./../../.env",
         "start:dev:debug": "nodemon --legacy-watch --watch ./.build --inspect=0.0.0.0:5858 --nolazy ./.build/index.js",
