@@ -5,5 +5,5 @@ docker-compose -f docker-compose.yml \
                -f docker-compose.postgres.yml \
                up \
                -d \
-               --build \
-               --scale consumer-web=2
+               --build
+               #--scale consumer-web=2

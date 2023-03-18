@@ -4,8 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "sh ./start-local-stack.sh",
-    "stop": "sh ./stop-local-stack.sh"
+    "start": "cd ./local-stack && sh ./start-local-stack.sh",
+    "stop": "./local-stack && sh ./stop-local-stack.sh"
   },
   "keywords": [],
   "author": "",
