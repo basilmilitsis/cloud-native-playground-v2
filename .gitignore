@@ -4,9 +4,6 @@ _ignore/
 .vs/
 .vscode/
 
-# kafka event storage
-kafka-event-log/
-
 # child directories
 node_modules
 node_modules/**/*
