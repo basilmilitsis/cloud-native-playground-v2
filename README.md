@@ -17,8 +17,15 @@ A little playground to experiment with some cloud tech
 
 ---
 
+# builder
+## setup
+- `cd builder`
+- `yarn install`
+- `yarn build`
+
 ## Adding your own (postgres backed) APIs
-- `build api pg create ${apiName} ${portNum}`
+- from project root colder
+- `./builder/bin/builder api pg create ${apiName} ${portNum}`
   - Generates new folder in `apis/${apiName}`
   - Follow `README.MD` instructions in generated folder
 
