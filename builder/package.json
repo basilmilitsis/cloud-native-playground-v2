@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "description": "build CLI",
   "private": true,
-  "types": "build/types/types.d.ts",
+  "types": ".build/types/types.d.ts",
   "bin": {
     "build": "bin/build"
   },
   "scripts": {
     "format": "prettier --write **/*.{js,ts,tsx,json}",
     "lint": "tslint -p .",
-    "clean-build": "rm -rf ./build",
+    "clean-build": "rm -rf ./.build",
     "compile": "tsc -p .",
     "copy-templates":
-      "if [ -e ./src/templates ]; then cp -a ./src/templates ./build/; fi",
+      "if [ -e ./src/templates ]; then cp -a ./src/templates ./.build/; fi",
     "build":
       "yarn format && yarn clean-build && yarn compile && yarn copy-templates",
     "prepublishOnly": "yarn build",
