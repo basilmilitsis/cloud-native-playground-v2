@@ -30,7 +30,7 @@ module.exports = {
       resolvers: resolversInfo
     }
     await writeTemplateSingle(templateModel, generate, toolbox.print)
-    info(`Updated Query Builder`)
+    info(`Updated Api Builder`)
   }
 }
 

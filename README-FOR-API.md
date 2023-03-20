@@ -1,3 +1,65 @@
+# Setup
+- ensure local-stack is already running
+- `npm i`
+
+# New Demo Domain
+## Create & Sync DB Tables
+- `builder api pg example-db-init`
+  - created and example set of tables and dummy data
+- `npm run db:init`
+  - adds tables to postgres
+  - adds data to postgres 
+- `npm run db:introspect`
+  - starts postgraphile server
+  - introspects graphql schema
+  - writes schema to `./src/db/.generated/schema/db.gql` 
+  - stops server
+## Add DB Queries & Commands
+- `builder api pg example-db-query`
+  - creates an example DB query
+- `builder api pg example-db-mutation`
+  - creates an example DB mutation
+- `npm run generate:db:code`
+  - generates typescript code to call DB queries
+## Add Domain Queries & Commands
+- `builder api pg example-api-query`
+  - creates an example domain query
+- `builder api pg example-api-command`
+  - creates an example domain command
+## Build & Run
+- `npm run generate:api:code:api-builder`
+  - creates file with resolvers for all domain queries and commands
+- `npm run start:dev`
+
+
+# Existing Domain
+## Create & Sync DB Tables
+- `npm run db:init`
+  - adds tables to postgres
+  - adds data to postgres 
+- `npm run db:introspect`
+  - introspects graphql schema
+  - writes schema to `./src/db/.generated/schema/db.gql`
+- `npm run generate:db:code`
+  - generates typescript code to call DB queries
+- `npm run generate:api:code:api-builder`
+  - creates file with resolvers for all domain queries and commands
+- `npm run start:dev`
+  - emits `./src/api/.generated/schema/api.graphql`
+  - starts server
+
+
+
+# Existing Domain
+## Build
+## Run
+
+
+
+
+
+
+----
 ### Steps:
 - **prerequisites**
   - `npm i`

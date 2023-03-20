@@ -9,6 +9,5 @@ node_modules
 node_modules/**/*
 dist/
 .build/
-.build_sync/
 etc/
 /**/.generated/**/*

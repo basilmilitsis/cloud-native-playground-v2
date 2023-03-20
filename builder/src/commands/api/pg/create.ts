@@ -32,8 +32,9 @@ module.exports = {
 
       name: name,
       port: port,
-      envDbName: `${strings.upperCase(name)}_DB_NAME`,
-      envPortName: `${strings.upperCase(name)}_API_PORT`
+      envSchemaName: `${strings.upperCase(name)}_DB_NAME`,
+      envPortName: `${strings.upperCase(name)}_API_PORT`,
+      dbName: 'playground'
     }
 
     await writeTemplateRecursively(templateModel, generate, toolbox.print)

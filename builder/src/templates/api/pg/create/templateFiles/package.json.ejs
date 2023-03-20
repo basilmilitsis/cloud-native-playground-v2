@@ -4,14 +4,15 @@
     "description": "",
     "main": "./.build/index.js",
     "scripts": {
-        "compile": "tsc",
-        "compile:db-models": "npx tsc -p ./tsconfig-init-db.json",
-        "compile:sync": "npx tsc -p ./tsconfig-sync.json",
-        "compile:watch": "tsc -w -p .",
+        "build:compile:domain:code": "tsc",
+        "build:compile:db-models": "npx tsc -p ./tsconfig-init-db.json",
+        "build:compile:sync:code": "npx tsc -p ./tsconfig-sync.json",
+        "domain:build:watch": "tsc -w -p .",
+        "build": "",
     
-        "init:db": "npm run compile:db-models && builder api pg init-db",
+        "db:init": "npm run build:compile:db-models && builder api pg init-db",
 
-        "sync:db-schema": "npm run compile:sync && node -r dotenv/config ./.build_sync/indexSync.js dotenv_config_path=./../../.env",
+        "db:introspect": "npm run build:compile:sync:code && node -r dotenv/config ./.build/domain/sync/indexSync.js dotenv_config_path=./../../.env",
     
         "generate:db:code:typings": "graphql-codegen",
         "generate:db:code:queries": "builder api pg generate-db-code-queries",
@@ -20,7 +21,7 @@
     
         "generate:api:code:api-builder": "builder api pg generate-api-builder",
     
-        "start:dev": "npm run compile && node -r dotenv/config ./.build/index.js dotenv_config_path=./../../.env",
+        "start:dev": "npm run build:compile:domain:code && node -r dotenv/config ./.build/index.js dotenv_config_path=./../../.env",
         "start:dev:debug": "nodemon --legacy-watch --watch ./.build --inspect=0.0.0.0:5858 --nolazy ./.build/index.js",
         "start": "node ./.build/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"

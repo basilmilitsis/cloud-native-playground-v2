@@ -5,6 +5,6 @@ export class Environment {
     static DB_USER: string = process.env.SHARED_POSTGRES_USER ? process.env.SHARED_POSTGRES_USER : 'shared-dev-user';
     static DB_PASSWORD: string = process.env.SHARED_POSTGRES_PASSWORD ? process.env.SHARED_POSTGRES_PASSWORD : 'shared-dev-password';
 
-    static DB_NAME: string = process.env.<%= props.envDbName %> ? process.env.<%= props.envDbName %> : '<%= props.name %>';
-    static API_PORT: number = process.env.<%= props.envPortName %> ? Number.parseInt(process.env.<%= props.envPortName %>) : <%= props.port %>;
+    static DB_NAME: string = process.env.DB_NAME ? process.env.DB_NAME : '<%= props.dbName %>';
+    static API_PORT: number = process.env.API_PORT ? Number.parseInt(process.env.API_PORT) : <%= props.port %>;
 }

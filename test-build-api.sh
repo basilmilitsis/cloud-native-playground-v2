@@ -12,10 +12,10 @@ npm i
 
 # Init DB
 builder api pg example-db-init
-npm run init:db
+npm run db:init
 
 # Sync DB Schema
-npm run sync:db-schema
+npm run db:introspect
 
 # Generate example DB Query and Mutation
 builder api pg example-db-query

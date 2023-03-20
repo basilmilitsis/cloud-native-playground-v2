@@ -17,7 +17,7 @@ services:
             - pgdata:/var/lib/postgresql/data
             # anything in initdb directory is created in the database
             # see "How to extend this image" section at https://hub.docker.com/r/_/postgres/
-            - "./local-stack/postgres/initdb:/docker-entrypoint-initdb.d"
+            - "./postgres/initdb:/docker-entrypoint-initdb.d"
         networks:
             - ppnet
         restart: always
@@ -30,7 +30,7 @@ services:
             - PGADMIN_DEFAULT_EMAIL=${PG4_ADMIN_USER}
             - PGADMIN_DEFAULT_PASSWORD=${PG4_ADMIN_PASSWORD}
         volumes:
-            - "./local-stack/postgres/config/pgadmin4-servers.json:/pgadmin4/servers.json"
+            - "./postgres/config/pgadmin4-servers.json:/pgadmin4/servers.json"
             #   - ${PWD}/pgadmin4_mnt:/var/lib/pgadmin
             # add the above line to mount the container to local storage if you need to export/import data.
         ports:

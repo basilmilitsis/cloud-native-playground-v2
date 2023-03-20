@@ -4,7 +4,7 @@ import { Agent } from './Agent';
 
 
 
-@Entity({ schema: 'public' })
+@Entity({ schema: '<%= props.envSchemaName %>' })
 export class Listing {
     @PrimaryGeneratedColumn()
     id!: number;

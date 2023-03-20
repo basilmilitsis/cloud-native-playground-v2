@@ -16,7 +16,7 @@ const pgPool: Pool = new Pool({
 });
 
 (async () => {
-    schema = await createPostGraphileSchema(pgPool, 'public');
+    schema = await createPostGraphileSchema(pgPool, '<%= props.envSchemaName %>');
     // console.log('=====+>', schema);
 })();
 

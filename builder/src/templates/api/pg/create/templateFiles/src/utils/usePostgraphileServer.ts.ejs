@@ -10,7 +10,7 @@ export const usePostgraphileServer = (app: Application, path: string, emitSchema
     app.use(
         postgraphile(
             `postgres://${Environment.DB_USER}:${Environment.DB_PASSWORD}@${Environment.DB_HOST}:${Environment.DB_PORT}/${Environment.DB_NAME}`,
-            'public',
+            '<%= props.envSchemaName %>',
             {
                 watchPg: true,
                 graphiql: true,

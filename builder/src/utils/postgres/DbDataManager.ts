@@ -13,8 +13,8 @@ export class DbDataManager {
   namingStrategy: NamingStrategyInterface
   messageCallback: (message: string) => void
 
-  constructor(dbName: string, messageCallback: (message: string) => void) {
-    this.schemaName = 'public'
+  constructor(schemaName: string, messageCallback: (message: string) => void) {
+    this.schemaName = schemaName
     this.namingStrategy = new SnakeNamingStrategy()
     this.messageCallback = messageCallback
     this.pool = new Pool({
@@ -22,7 +22,7 @@ export class DbDataManager {
       port: Environment.DB_PORT,
       user: Environment.DB_USER,
       password: Environment.DB_PASSWORD,
-      database: dbName
+      database: Environment.DB_NAME
     })
   }
 

@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn
 
 
 
-@Entity({ schema: 'public' })
+@Entity({ schema: '<%= props.envSchemaName %>' })
 export class Office {
     @PrimaryGeneratedColumn()
     id!: number;

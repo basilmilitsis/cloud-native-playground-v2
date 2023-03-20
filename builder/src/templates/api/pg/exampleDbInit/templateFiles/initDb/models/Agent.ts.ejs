@@ -3,7 +3,7 @@ import { Office } from './Office';
 
 
 
-@Entity({ schema: 'public' })
+@Entity({ schema: '<%= props.envSchemaName %>' })
 export class Agent {
     @PrimaryGeneratedColumn()
     id!: number;
